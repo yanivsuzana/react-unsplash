@@ -1,0 +1,163 @@
+* {
+    color: #333;
+    font-size: 10px;
+}
+
+.App {
+    margin: 0;
+    padding: 0;
+}
+.photolist{
+    width: 275px;
+    text-align: left;
+    margin: 0px auto;
+    margin-top: -20px;   
+}
+.photolist ul{
+    width: 131px;
+    font-size: 2em;
+    background: #eaeaea;
+    list-style-type: none;
+    text-align: left;
+}
+
+.photolist ul li {
+    font-size: 1em;
+    margin-bottom: 3px;
+    cursor:pointer;
+}
+
+.label {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 40px;
+}
+
+.title {
+    font-size: 4.4rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.form {
+    display: grid;
+    width: 63%;
+    margin: 0px auto;
+}
+
+.input {
+    font-size: 1.6rem;
+    padding: 0.5rem 2rem;
+    line-height: 2.8rem;
+    border-radius: 20px;
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+.button {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    border-radius: 20px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 250ms;
+}
+.MuiAutocomplete-hasClearIcon{
+    display: flex;
+    width: 100%;
+}
+.btnsrc{
+    display: flex;
+    height: 4em;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+}
+.srch {
+    width: 34em;
+    margin: 0px auto;
+    display: flex;
+    
+}
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.card {
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: max-content;
+    height: max-content;
+    cursor: pointer;
+}
+
+h1{
+font-size:26px
+}
+
+.photoscreen {
+text-align: center;
+}
+
+.toright {
+text-align: right;
+}
+
+a{
+    font-size: 16px;
+    margin-left: 1em;
+}
+
+.card--image {
+    flex: 100% 1;
+    margin-top: 1rem;
+    border-radius: 10px;
+    width: 76%;
+}
+.wt100{
+    width: 100%;
+}
+.fixtop{
+    margin-top: 1em;
+}
+
+.left10{
+    margin-left: 1em;
+}
+
+.likeimg {
+    display: block;
+    color: #749df1;
+    z-index: 999;
+    background: transparent;
+    font-size: 31px;
+}
+
+.card-list {
+    column-count: 3;
+    width: 63%;
+    margin: 0px auto;
+}
+
+@media (min-width: 768px) {
+    .form {
+        grid-template-columns: auto 1fr auto;
+        grid-gap: 1rem;
+        align-items: center;
+    }
+    .input {
+        margin-bottom: 0;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .card-list {
+        column-count: 1;
+    }
+}
