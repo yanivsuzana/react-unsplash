@@ -1,4 +1,4 @@
-import React, { useState , useRef } from "react";
+import React, { useState , useEffect , useRef } from "react";
 import Unsplash, { toJson } from "unsplash-js";
 import { useHistory } from "react-router-dom";
 
@@ -9,7 +9,18 @@ const PhotoSet = new Set()
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
   const [result, setResult] = useState([]);
-  const [itemsPhotos, setPhotoList] = useState([]);
+  const arrayStatePhotos = () => ((localStorage.getItem('PhotoSetList')!=null) ? localStorage.getItem('PhotoSetList').split(',') : []);
+  const [itemsPhotos, setPhotoList] = useState(arrayStatePhotos);
+  
+  useEffect(() => {
+    let tempItems=(localStorage.getItem('PhotoSetList')!=null) ? localStorage.getItem('PhotoSetList').split(',') : [];
+    if (tempItems!=null) {
+        for(var i=0;i<tempItems.length;i++){
+            PhotoSet.add(tempItems[i]);
+        }
+      }
+  });
+
   const searchValue = useRef(null);
   let history = useHistory();
 
@@ -30,6 +41,7 @@ const PhotoSet = new Set()
            }
         }
          else{
+             
             if(PhotoSet.size<=4){
                 PhotoSet.add(searchValue.current.value)
                 console.log(Array.from(PhotoSet))
