@@ -2,8 +2,8 @@ import React, { useState , useEffect , useRef } from "react";
 import Unsplash, { toJson } from "unsplash-js";
 import { useHistory } from "react-router-dom";
 
-let unsplash = new Unsplash({accessKey: ""});
-const PhotoSet = new Set()
+let unSplash = new Unsplash({accessKey: ""});
+const photoSet = new Set()
 
  function SearchPhotos(props) {
   const [search, setSearch] = useState("");
@@ -11,21 +11,20 @@ const PhotoSet = new Set()
   const [result, setResult] = useState([]);
   const arrayStatePhotos = () => ((localStorage.getItem('PhotoSetList')!=null) ? localStorage.getItem('PhotoSetList').split(',') : []);
   const [itemsPhotos, setPhotoList] = useState(arrayStatePhotos);
+  const searchValue = useRef(null);
+  let history = useHistory();
   
   useEffect(() => {
     let tempItems=(localStorage.getItem('PhotoSetList')!=null) ? localStorage.getItem('PhotoSetList').split(',') : [];
     if (tempItems!=null) {
         for(var i=0;i<tempItems.length;i++){
-            PhotoSet.add(tempItems[i]);
+            photoSet.add(tempItems[i]);
         }
       }
   });
 
-  const searchValue = useRef(null);
-  let history = useHistory();
-
-   if (typeof(props.location.state) != "undefined"){
-            unsplash._accessKey=props.location.state.detail;
+  if (typeof(props.location.state) != "undefined"){
+            unSplash._accessKey=props.location.state.detail;
   }  
   
   function performSearchWithValue(val){
@@ -34,7 +33,7 @@ const PhotoSet = new Set()
   }
 
   function performSearch(){
-    unsplash.search.photos(searchValue.current.value).then(toJson).then((json) => {
+    unSplash.search.photos(searchValue.current.value).then(toJson).then((json) => {
         if (typeof(json.errors) != "undefined"){
           if(json.errors[0].indexOf("invalid")>-1) {
             alert('access token invalid : please login')
@@ -42,10 +41,10 @@ const PhotoSet = new Set()
         }
          else{
              
-            if(PhotoSet.size<=4){
-                PhotoSet.add(searchValue.current.value)
-                console.log(Array.from(PhotoSet))
-                localStorage.setItem('PhotoSetList', Array.from(PhotoSet));
+            if(photoSet.size<=4){
+                photoSet.add(searchValue.current.value)
+                console.log(Array.from(photoSet))
+                localStorage.setItem('PhotoSetList', Array.from(photoSet));
                 let temp=localStorage.getItem('PhotoSetList');
                 temp=temp.split(',')
                 setPhotoList(temp);
@@ -56,7 +55,7 @@ const PhotoSet = new Set()
     }
 
   function logout(){
-    unsplash = new Unsplash({
+    unSplash = new Unsplash({
       accessKey: "",
     });
     history.push({pathname: "/" })
@@ -68,7 +67,7 @@ const PhotoSet = new Set()
       <h1>Search for photos on any topic</h1>
       <div className="toright">
               <button  className="button" onClick={() => logout()}>
-              {(unsplash._accessKey=="") ? 'Log in' : 'Log out'}
+              {(unSplash._accessKey=="") ? 'Log in' : 'Log out'}
             </button>
       </div>
       <form onSubmit={e => {e.preventDefault();setQuery(search);}}>
