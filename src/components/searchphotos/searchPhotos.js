@@ -40,7 +40,6 @@ const photoSet = new Set()
            }
         }
          else{
-             
             if(photoSet.size<=4){
                 photoSet.add(searchValue.current.value)
                 console.log(Array.from(photoSet))
