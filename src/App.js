@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import SearchPhotos from "./components/searchphotos/searchPhotos"
 import Login from "./components/userLogin/userLogin"
-import { BrowserRouter, Redirect , Link , Route , Switch } from 'react-router-dom'
+import { BrowserRouter , Link , Route , Switch } from 'react-router-dom'
 
 function App() {
   return (
