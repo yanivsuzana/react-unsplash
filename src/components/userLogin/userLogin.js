@@ -1,11 +1,10 @@
-import React, { useState , useEffect , useRef } from "react";
+import React, { useRef } from "react";
 import Unsplash, { toJson } from "unsplash-js";
 import { useHistory } from "react-router-dom";
 
 let unsplash = new Unsplash({accessKey: ""});
 
 const UserLogin = () => {
-  const [query, setQuery] = useState("");
   const token = useRef(null);
   let history = useHistory();
 
