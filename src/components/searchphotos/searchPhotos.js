@@ -13,18 +13,14 @@ const photoSet = new Set()
   const [itemsPhotos, setPhotoList] = useState(arrayStatePhotos);
   const searchValue = useRef(null);
   let history = useHistory();
-  
+
   useEffect(() => {
     let tempItems=(localStorage.getItem('PhotoSetList')!=null) ? localStorage.getItem('PhotoSetList').split(',') : [];
-    if (tempItems!=null) {
-        for(var i=0;i<tempItems.length;i++){
-            photoSet.add(tempItems[i]);
-        }
-      }
+    tempItems.forEach(element => photoSet.add(element))
   });
 
   if (typeof(props.location.state) != "undefined"){
-            unSplash._accessKey=props.location.state.detail;
+    unSplash._accessKey=props.location.state.detail;
   }  
   
   function performSearchWithValue(val){
@@ -42,11 +38,8 @@ const photoSet = new Set()
          else{
             if(photoSet.size<=4){
                 photoSet.add(searchValue.current.value)
-                console.log(Array.from(photoSet))
                 localStorage.setItem('PhotoSetList', Array.from(photoSet));
-                let temp=localStorage.getItem('PhotoSetList');
-                temp=temp.split(',')
-                setPhotoList(temp);
+                setPhotoList(localStorage.getItem('PhotoSetList').split(','));
             }
             setResult(json.results);
          }
